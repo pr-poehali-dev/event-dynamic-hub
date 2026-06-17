@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Icon from '@/components/ui/icon';
-import { Button } from '@/components/ui/button';
 
 const HERO_IMG =
   'https://cdn.poehali.dev/projects/bfa2ab91-7ee9-4bb0-8d91-527bb910c1ff/files/dbd7ff40-fd1c-4162-bf40-8a4b5b9576c3.jpg';
@@ -9,7 +8,8 @@ const EVENT_DATE = new Date('2026-10-09T10:00:00');
 
 const cities = [
   {
-    city: 'Москва · Осень',
+    city: 'Москва',
+    label: 'Осень 2026',
     venue: 'Гостиница «Аэростар», 9 этажей',
     date: '9–11 октября 2026',
     status: 'Скоро',
@@ -17,13 +17,15 @@ const cities = [
   },
   {
     city: 'Санкт-Петербург',
+    label: 'Ноябрь 2026',
     venue: 'Holiday Inn Московские ворота',
     date: '21–23 ноября 2026',
     status: 'Регистрация',
     soon: false,
   },
   {
-    city: 'Москва · Весна',
+    city: 'Москва',
+    label: 'Весна 2027',
     venue: 'Гостиница «Аэростар»',
     date: '17–19 апреля 2027',
     status: 'Анонс',
@@ -31,6 +33,7 @@ const cities = [
   },
   {
     city: 'Екатеринбург',
+    label: 'Июнь 2027',
     venue: 'Отель «Хаятт Ридженси»',
     date: '12–14 июня 2027',
     status: 'Анонс',
@@ -40,51 +43,50 @@ const cities = [
 
 const news = [
   {
-    tag: 'АНОНС',
-    time: '12 минут назад',
+    tag: 'Анонс',
+    date: '17 июня 2026',
     title: 'McIntosh представит флагманский усилитель MC3500 на московской выставке',
     city: 'Москва · Осень',
   },
   {
-    tag: 'ПРОГРАММА',
-    time: '1 час назад',
+    tag: 'Программа',
+    date: '17 июня 2026',
     title: 'Jazz & Rock Sound: вечерний концерт на виниле в главном зале',
     city: 'Москва · Осень',
   },
   {
-    tag: 'УЧАСТНИКИ',
-    time: '3 часа назад',
+    tag: 'Участники',
+    date: '16 июня 2026',
     title: 'К выставке в Санкт-Петербурге присоединились ещё 14 брендов',
     city: 'Санкт-Петербург',
   },
   {
-    tag: 'БИЛЕТЫ',
-    time: 'сегодня',
+    tag: 'Билеты',
+    date: '15 июня 2026',
     title: 'Открыта ранняя регистрация на все четыре события сезона',
     city: 'Все города',
   },
+  {
+    tag: 'Пресса',
+    date: '14 июня 2026',
+    title: 'Журнал «Салон AV» — партнёр выставки HI FI SHOW 2026',
+    city: 'Все города',
+  },
+  {
+    tag: 'Анонс',
+    date: '12 июня 2026',
+    title: 'Focal представит новую линейку Utopia III на выставке в Москве',
+    city: 'Москва · Осень',
+  },
 ];
 
-const marqueeBrands = [
-  'McIntosh', 'Bowers & Wilkins', 'Focal', 'Naim', 'Marantz', 'Sonus faber',
-  'Dynaudio', 'Pro-Ject', 'Audio-Technica', 'KEF', 'Cambridge Audio',
+const brands = [
+  'McIntosh', 'Bowers & Wilkins', 'Focal', 'Naim Audio', 'Marantz',
+  'Sonus faber', 'Dynaudio', 'Pro-Ject', 'Audio-Technica', 'KEF',
+  'Cambridge Audio', 'Accuphase', 'Luxman', 'Pass Labs',
 ];
 
-const Logo = ({ className = '' }: { className?: string }) => (
-  <div className={`inline-flex items-center gap-2 ${className}`}>
-    <div className="flex items-center justify-center w-9 h-9 rounded-md bg-primary text-primary-foreground">
-      <Icon name="AudioLines" size={20} />
-    </div>
-    <div className="leading-none">
-      <div className="font-display font-700 text-lg tracking-[0.18em]">
-        HI<span className="text-primary">FI</span>SHOW
-      </div>
-      <div className="text-[9px] uppercase tracking-[0.32em] text-muted-foreground font-500 mt-0.5">
-        Hi-Fi &amp; High-End
-      </div>
-    </div>
-  </div>
-);
+const navLinks = ['Выставки', 'Участникам', 'Посетителям', 'Пресс-центр', 'О проекте'];
 
 function useCountdown(target: Date) {
   const [diff, setDiff] = useState(target.getTime() - Date.now());
@@ -99,241 +101,368 @@ function useCountdown(target: Date) {
   return { d, h, m, s };
 }
 
+const HES_DARK = '#242940';
+
 const Index = () => {
   const { d, h, m, s } = useCountdown(EVENT_DATE);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      {/* NAV */}
-      <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-background/70 border-b border-border">
-        <div className="container flex items-center justify-between h-16">
-          <Logo />
-          <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground font-500">
-            {['Выставки', 'Участникам', 'Посетителям', 'Пресс-центр', 'О проекте'].map((i) => (
-              <a key={i} href="#" className="hover:text-foreground transition-colors">{i}</a>
+    <div className="min-h-screen bg-white text-[#242940] overflow-x-hidden" style={{ fontFamily: '"Nunito Sans", sans-serif' }}>
+
+      {/* ── TOP BAR ── */}
+      <div className="hidden md:block border-b border-[#e8e8ec] text-xs text-[#8890a8] py-2">
+        <div className="max-w-[1220px] mx-auto px-6 flex justify-between items-center">
+          <span>Международная выставка Hi-Fi &amp; High-End аппаратуры · с 1996 года</span>
+          <div className="flex items-center gap-6">
+            <a href="#" className="hover:text-[#242940] transition-colors">EN</a>
+            <span className="text-[#e8e8ec]">|</span>
+            <a href="#" className="hover:text-[#242940] transition-colors">Пресс-центр</a>
+            <span className="text-[#e8e8ec]">|</span>
+            <a href="#" className="hover:text-[#242940] transition-colors">Контакты</a>
+          </div>
+        </div>
+      </div>
+
+      {/* ── HEADER ── */}
+      <header className="sticky top-0 z-50 bg-white border-b border-[#e8e8ec]">
+        <div className="max-w-[1220px] mx-auto px-6 flex items-center justify-between h-[72px]">
+
+          {/* LOGO */}
+          <a href="#" className="flex items-center gap-3 no-underline">
+            <div
+              className="flex flex-col items-center justify-center w-11 h-11 border-2"
+              style={{ borderColor: HES_DARK }}
+            >
+              <span className="text-[10px] font-700 tracking-[0.15em] leading-none" style={{ color: HES_DARK }}>HI FI</span>
+              <div className="w-full h-px my-[3px]" style={{ background: HES_DARK }} />
+              <span className="text-[8px] font-300 tracking-[0.2em] leading-none" style={{ color: HES_DARK }}>SHOW</span>
+            </div>
+            <div>
+              <div className="text-[13px] font-700 tracking-[0.22em] uppercase leading-none" style={{ color: HES_DARK }}>
+                HI FI SHOW
+              </div>
+              <div className="text-[10px] font-300 tracking-[0.18em] uppercase text-[#8890a8] mt-0.5">
+                Hi-Fi &amp; High-End
+              </div>
+            </div>
+          </a>
+
+          {/* NAV */}
+          <nav className="hidden lg:flex items-center gap-0">
+            {navLinks.map((link) => (
+              <a
+                key={link}
+                href="#"
+                className="px-5 py-2 text-[13px] font-400 tracking-[0.08em] uppercase text-[#242940] hover:text-[#8890a8] transition-colors no-underline"
+              >
+                {link}
+              </a>
             ))}
           </nav>
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-600 rounded-full px-5">
-            Купить билет
-          </Button>
+
+          <div className="flex items-center gap-3">
+            <a
+              href="#"
+              className="hidden md:inline-block px-6 py-2.5 text-[12px] font-600 tracking-[0.12em] uppercase text-white transition-opacity hover:opacity-80 no-underline"
+              style={{ background: HES_DARK }}
+            >
+              Билеты
+            </a>
+            <button
+              className="lg:hidden p-2"
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
+              <Icon name="Menu" size={22} />
+            </button>
+          </div>
         </div>
+
+        {/* MOBILE MENU */}
+        {menuOpen && (
+          <div className="lg:hidden border-t border-[#e8e8ec] bg-white">
+            {navLinks.map((link) => (
+              <a key={link} href="#" className="block px-6 py-3 text-sm uppercase tracking-wider border-b border-[#f0f0f4] hover:bg-[#f7f7fa] no-underline" style={{ color: HES_DARK }}>
+                {link}
+              </a>
+            ))}
+          </div>
+        )}
       </header>
 
-      {/* HERO */}
-      <section className="relative min-h-screen flex items-end">
-        <div className="absolute inset-0">
-          <img src={HERO_IMG} alt="HI FI SHOW" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background/45" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/85 via-background/30 to-transparent" />
-          <div className="absolute inset-0 grain opacity-[0.06] mix-blend-multiply" />
+      {/* ── HERO ── */}
+      <section className="relative">
+        {/* image */}
+        <div className="relative h-[560px] md:h-[680px] overflow-hidden">
+          <img src={HERO_IMG} alt="HI FI SHOW" className="w-full h-full object-cover object-center" />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(36,41,64,0.82) 0%, rgba(36,41,64,0.45) 55%, rgba(36,41,64,0.10) 100%)' }} />
+
+          {/* hero content */}
+          <div className="absolute inset-0 flex items-center">
+            <div className="max-w-[1220px] mx-auto px-6 w-full">
+              <p className="text-[11px] font-600 tracking-[0.28em] uppercase text-white/70 mb-5">
+                Ближайшее мероприятие
+              </p>
+              <h1
+                className="text-white font-300 leading-[1.05] mb-6"
+                style={{ fontSize: 'clamp(2.4rem, 6vw, 4.8rem)', letterSpacing: '0.04em' }}
+              >
+                Выставка<br />
+                Hi-Fi &amp; High-End<br />
+                <span className="font-700">Москва · Осень</span>
+              </h1>
+              <p className="text-white/75 text-base font-300 mb-8 max-w-md">
+                9–11 октября 2026 · Гостиница «Аэростар»<br />
+                9 этажей · более 120 брендов
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href="#"
+                  className="px-8 py-3 text-[12px] font-600 tracking-[0.14em] uppercase text-white no-underline hover:opacity-80 transition-opacity"
+                  style={{ background: HES_DARK }}
+                >
+                  Зарегистрироваться
+                </a>
+                <a
+                  href="#"
+                  className="px-8 py-3 text-[12px] font-600 tracking-[0.14em] uppercase border border-white text-white no-underline hover:bg-white hover:text-[#242940] transition-colors"
+                >
+                  Программа
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="container relative z-10 pb-20 pt-32">
-          <div className="flex items-center gap-2 text-primary text-sm font-600 tracking-widest mb-6 animate-float-up">
-            <span className="live-dot" /> БЛИЖАЙШЕЕ СОБЫТИЕ · МОСКВА
-          </div>
-          <h1
-            className="font-display font-700 uppercase leading-[0.9] text-balance animate-float-up"
-            style={{ fontSize: 'clamp(3rem, 9vw, 8rem)', animationDelay: '0.1s' }}
-          >
-            Выставка<br />
-            <span className="text-primary">High-End</span> аудио
-          </h1>
-          <p
-            className="mt-6 max-w-xl text-lg text-muted-foreground animate-float-up"
-            style={{ animationDelay: '0.2s' }}
-          >
-            Главное событие индустрии звука с 1996 года. Девять этажей премиальной
-            акустики, винила и портативного аудио.
-          </p>
-
-          <div className="mt-10 flex flex-wrap items-center gap-8 animate-float-up" style={{ animationDelay: '0.3s' }}>
-            <div className="flex gap-4">
+        {/* COUNTDOWN BAR */}
+        <div style={{ background: HES_DARK }}>
+          <div className="max-w-[1220px] mx-auto px-6 py-5 flex flex-wrap items-center justify-between gap-4">
+            <p className="text-[11px] font-400 tracking-[0.2em] uppercase text-white/50 hidden sm:block">
+              До открытия выставки
+            </p>
+            <div className="flex gap-6 md:gap-10">
               {[['Дней', d], ['Часов', h], ['Минут', m], ['Секунд', s]].map(([label, val]) => (
                 <div key={label as string} className="text-center">
-                  <div className="font-display font-700 text-4xl md:text-5xl tabular-nums">
+                  <div className="text-white font-700 tabular-nums" style={{ fontSize: '2rem', lineHeight: 1 }}>
                     {String(val).padStart(2, '0')}
                   </div>
-                  <div className="text-[11px] uppercase tracking-widest text-muted-foreground">{label}</div>
+                  <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 mt-1">{label}</div>
                 </div>
               ))}
             </div>
-            <div className="h-12 w-px bg-border hidden sm:block" />
-            <div className="text-sm">
-              <div className="flex items-center gap-2 text-foreground font-500">
-                <Icon name="Calendar" size={16} className="text-primary" /> 9–11 октября 2026
-              </div>
-              <div className="flex items-center gap-2 text-muted-foreground mt-1">
-                <Icon name="MapPin" size={16} className="text-primary" /> Гостиница «Аэростар», Москва
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-10 flex flex-wrap gap-4 animate-float-up" style={{ animationDelay: '0.4s' }}>
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-600 rounded-full px-8 h-12">
-              Зарегистрироваться
-            </Button>
-            <Button size="lg" variant="outline" className="border-border bg-transparent hover:bg-secondary rounded-full px-8 h-12 font-500">
-              <Icon name="Play" size={18} className="mr-2" /> Смотреть тизер
-            </Button>
+            <a
+              href="#"
+              className="hidden md:inline-block px-6 py-2.5 text-[11px] font-600 tracking-[0.14em] uppercase border border-white/30 text-white/70 hover:border-white hover:text-white transition-colors no-underline"
+            >
+              Купить билет →
+            </a>
           </div>
         </div>
       </section>
 
-      {/* MARQUEE */}
-      <div className="border-y border-border py-5 overflow-hidden bg-secondary/30">
+      {/* ── EVENTS GRID ── */}
+      <section className="max-w-[1220px] mx-auto px-6 py-20">
+        <div className="flex items-end justify-between mb-12 flex-wrap gap-6">
+          <div>
+            <p className="text-[11px] font-600 tracking-[0.28em] uppercase text-[#8890a8] mb-3">Сезон 2026–2027</p>
+            <h2 className="font-300 m-0" style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)' }}>
+              Мероприятия
+            </h2>
+          </div>
+          <a href="#" className="text-[12px] font-600 tracking-[0.14em] uppercase text-[#8890a8] hover:text-[#242940] transition-colors no-underline">
+            Все мероприятия →
+          </a>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-0 border-l border-t border-[#e8e8ec]">
+          {cities.map((c) => (
+            <a
+              key={c.city + c.label}
+              href="#"
+              className={`group block border-r border-b border-[#e8e8ec] p-8 no-underline transition-colors hover:bg-[#f7f7fa] ${c.soon ? 'bg-[#f7f7fa]' : 'bg-white'}`}
+            >
+              <div className="flex items-center justify-between mb-6">
+                <span
+                  className={`text-[10px] font-700 tracking-[0.2em] uppercase px-3 py-1 ${
+                    c.soon
+                      ? 'text-white'
+                      : 'text-[#8890a8] border border-[#e8e8ec]'
+                  }`}
+                  style={c.soon ? { background: HES_DARK } : {}}
+                >
+                  {c.status}
+                </span>
+                <Icon
+                  name="ArrowRight"
+                  size={16}
+                  className="text-[#c8cad6] group-hover:text-[#242940] transition-colors group-hover:translate-x-1 duration-200"
+                />
+              </div>
+
+              <p className="text-[11px] font-400 tracking-[0.2em] uppercase text-[#8890a8] mb-1">{c.label}</p>
+              <h3 className="font-700 m-0 mb-2" style={{ fontSize: '1.35rem', letterSpacing: '0.04em', color: HES_DARK }}>
+                {c.city}
+              </h3>
+              <p className="text-sm text-[#8890a8] font-300 m-0 mt-3">{c.date}</p>
+              <p className="text-xs text-[#b0b3c6] font-300 m-0 mt-1">{c.venue}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* ── BRANDS MARQUEE ── */}
+      <div className="border-y border-[#e8e8ec] py-5 overflow-hidden bg-[#f7f7fa]">
         <div className="flex w-max animate-marquee">
-          {[...marqueeBrands, ...marqueeBrands].map((b, i) => (
-            <span key={i} className="font-display text-xl uppercase tracking-wider text-muted-foreground/60 px-8 flex items-center gap-8">
-              {b} <span className="text-primary text-xs">◆</span>
+          {[...brands, ...brands].map((b, i) => (
+            <span
+              key={i}
+              className="text-[12px] font-400 tracking-[0.22em] uppercase text-[#8890a8] px-8 flex items-center gap-8"
+            >
+              {b}<span className="text-[#c8cad6] text-[8px]">◆</span>
             </span>
           ))}
         </div>
       </div>
 
-      {/* CITIES */}
-      <section className="container py-24">
-        <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
+      {/* ── NEWS ── */}
+      <section className="max-w-[1220px] mx-auto px-6 py-20">
+        <div className="flex items-end justify-between mb-12 flex-wrap gap-6">
           <div>
-            <div className="text-primary text-sm font-600 tracking-widest mb-3">ГЕОГРАФИЯ СЕЗОНА</div>
-            <h2 className="font-display font-700 uppercase text-5xl md:text-6xl leading-none">Четыре города</h2>
+            <p className="text-[11px] font-600 tracking-[0.28em] uppercase text-[#8890a8] mb-3">
+              <span className="inline-block w-2 h-2 rounded-full bg-red-500 mr-2 animate-pulse" />
+              Обновляется в реальном времени
+            </p>
+            <h2 className="font-300 m-0" style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)' }}>
+              Новости и анонсы
+            </h2>
           </div>
-          <p className="text-muted-foreground max-w-sm">
-            Выберите ближайшее к вам событие. Каждая выставка — со своей программой и составом участников.
-          </p>
+          <a href="#" className="text-[12px] font-600 tracking-[0.14em] uppercase text-[#8890a8] hover:text-[#242940] transition-colors no-underline">
+            Все новости →
+          </a>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-          {cities.map((c, i) => (
-            <div
-              key={c.city}
-              className={`group relative rounded-2xl p-6 flex flex-col justify-between min-h-[260px] border transition-all duration-300 hover:-translate-y-2 animate-float-up ${
-                c.soon
-                  ? 'bg-primary text-primary-foreground border-primary lg:scale-105 shadow-[0_20px_60px_-15px_hsl(35_92%_55%/0.5)]'
-                  : 'bg-card border-border hover:border-primary/50'
-              }`}
-              style={{ animationDelay: `${i * 0.08}s` }}
+        <div className="divide-y divide-[#e8e8ec]">
+          {news.map((n, i) => (
+            <a
+              key={i}
+              href="#"
+              className="group flex items-start gap-6 py-6 no-underline hover:bg-[#f7f7fa] -mx-4 px-4 transition-colors"
             >
-              <div className="flex items-center justify-between">
-                <span className={`text-xs font-600 uppercase tracking-widest px-3 py-1 rounded-full ${
-                  c.soon ? 'bg-primary-foreground/15' : 'bg-secondary text-muted-foreground'
-                }`}>
-                  {c.soon && <span className="live-dot" />}{c.status}
-                </span>
-                <Icon name="ArrowUpRight" size={22} className="opacity-50 group-hover:opacity-100 group-hover:rotate-45 transition-all" />
+              <div className="hidden sm:flex flex-col items-center pt-1 min-w-[80px]">
+                <span className="text-[10px] font-600 tracking-[0.18em] uppercase text-[#8890a8]">{n.date.split(' ')[0]}</span>
+                <span className="text-[10px] font-300 text-[#b0b3c6] tracking-wide">{n.date.split(' ').slice(1).join(' ')}</span>
+              </div>
+              <div className="w-px self-stretch bg-[#e8e8ec] hidden sm:block" />
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-2">
+                  <span
+                    className="text-[10px] font-700 tracking-[0.18em] uppercase px-2 py-0.5 border"
+                    style={{ color: HES_DARK, borderColor: '#c8cad6' }}
+                  >
+                    {n.tag}
+                  </span>
+                  <span className="text-[11px] text-[#b0b3c6] font-300">{n.city}</span>
+                </div>
+                <h4
+                  className="font-400 m-0 group-hover:text-[#5a6080] transition-colors"
+                  style={{ fontSize: '1rem', textTransform: 'none', letterSpacing: '0', color: HES_DARK }}
+                >
+                  {n.title}
+                </h4>
+              </div>
+              <Icon
+                name="ArrowRight"
+                size={16}
+                className="text-[#c8cad6] group-hover:text-[#242940] mt-1 shrink-0 transition-all group-hover:translate-x-1 duration-200"
+              />
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* ── SUBSCRIBE ── */}
+      <div style={{ background: HES_DARK }}>
+        <div className="max-w-[1220px] mx-auto px-6 py-16 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div>
+            <h2
+              className="text-white font-300 m-0 mb-2"
+              style={{ fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', letterSpacing: '0.04em' }}
+            >
+              Не пропустите событие<br />в вашем городе
+            </h2>
+            <p className="text-white/50 text-sm font-300 m-0">
+              Анонсы, программа и состав участников — первыми.
+            </p>
+          </div>
+          <form className="flex flex-col sm:flex-row gap-0 w-full md:w-auto md:min-w-[420px]">
+            <input
+              type="email"
+              placeholder="Ваш e-mail"
+              className="flex-1 h-12 px-5 text-sm bg-white/10 border border-white/20 text-white placeholder:text-white/30 outline-none focus:border-white/50 transition-colors"
+            />
+            <button
+              type="submit"
+              className="h-12 px-7 text-[12px] font-600 tracking-[0.14em] uppercase bg-white text-[#242940] hover:bg-white/90 transition-colors whitespace-nowrap border-0 cursor-pointer"
+            >
+              Подписаться
+            </button>
+          </form>
+        </div>
+      </div>
+
+      {/* ── FOOTER ── */}
+      <footer className="border-t border-[#e8e8ec]">
+        <div className="max-w-[1220px] mx-auto px-6 py-14 grid md:grid-cols-4 gap-10">
+          <div className="md:col-span-1">
+            <div className="flex items-center gap-3 mb-5">
+              <div
+                className="flex flex-col items-center justify-center w-9 h-9 border-2 shrink-0"
+                style={{ borderColor: HES_DARK }}
+              >
+                <span className="text-[8px] font-700 tracking-[0.1em] leading-none" style={{ color: HES_DARK }}>HI FI</span>
+                <div className="w-full h-px my-[2px]" style={{ background: HES_DARK }} />
+                <span className="text-[7px] font-300 tracking-[0.15em] leading-none" style={{ color: HES_DARK }}>SHOW</span>
               </div>
               <div>
-                <h3 className={`font-display font-600 uppercase text-2xl leading-tight mb-3 ${c.soon ? '' : ''}`}>
-                  {c.city}
-                </h3>
-                <div className={`text-sm font-500 ${c.soon ? 'text-primary-foreground/90' : 'text-foreground'}`}>
-                  {c.date}
-                </div>
-                <div className={`text-xs mt-1 ${c.soon ? 'text-primary-foreground/70' : 'text-muted-foreground'}`}>
-                  {c.venue}
-                </div>
+                <div className="text-[11px] font-700 tracking-[0.2em] uppercase" style={{ color: HES_DARK }}>HI FI SHOW</div>
+                <div className="text-[9px] font-300 tracking-[0.15em] uppercase text-[#8890a8]">Hi-Fi & High-End</div>
               </div>
+            </div>
+            <p className="text-sm text-[#8890a8] font-300 leading-relaxed">
+              Организатор — «Мидэкспо».<br />Выставка проводится с 1996 года.
+            </p>
+          </div>
+
+          {[
+            { title: 'Выставки', links: ['Москва · Осень', 'Санкт-Петербург', 'Москва · Весна', 'Екатеринбург'] },
+            { title: 'Информация', links: ['Участникам', 'Посетителям', 'Пресс-центр', 'Мобильное приложение'] },
+            { title: 'Компания', links: ['О проекте', 'История', 'Команда', 'Контакты'] },
+          ].map((col) => (
+            <div key={col.title}>
+              <h4 className="text-[11px] font-700 tracking-[0.22em] uppercase text-[#242940] m-0 mb-5">
+                {col.title}
+              </h4>
+              <ul className="list-none p-0 m-0 space-y-2.5">
+                {col.links.map((l) => (
+                  <li key={l}>
+                    <a href="#" className="text-sm text-[#8890a8] font-300 hover:text-[#242940] transition-colors no-underline">
+                      {l}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
-      </section>
 
-      {/* LIVE NEWS FEED */}
-      <section className="container pb-24">
-        <div className="flex items-center gap-3 mb-8">
-          <span className="live-dot" />
-          <h2 className="font-display font-700 uppercase text-4xl md:text-5xl">Лента событий</h2>
-          <span className="text-xs uppercase tracking-widest text-primary border border-primary/40 rounded-full px-3 py-1 ml-2">
-            в реальном времени
-          </span>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-4">
-          {news.map((n, i) => (
-            <article
-              key={i}
-              className="group flex gap-5 items-start bg-card border border-border rounded-2xl p-6 hover:border-primary/50 transition-all duration-300 animate-float-up"
-              style={{ animationDelay: `${i * 0.06}s` }}
-            >
-              <div className="shrink-0 w-12 h-12 rounded-xl bg-secondary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                <Icon name="Radio" size={20} />
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center gap-3 text-xs mb-2">
-                  <span className="text-primary font-600 tracking-widest">{n.tag}</span>
-                  <span className="text-muted-foreground">{n.time}</span>
-                </div>
-                <h3 className="font-500 text-lg leading-snug group-hover:text-primary transition-colors">
-                  {n.title}
-                </h3>
-                <div className="flex items-center gap-1.5 text-xs text-muted-foreground mt-3">
-                  <Icon name="MapPin" size={13} /> {n.city}
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <div className="text-center mt-10">
-          <Button variant="outline" className="border-border bg-transparent hover:bg-secondary rounded-full px-8 h-12 font-500">
-            Все новости <Icon name="ArrowRight" size={18} className="ml-2" />
-          </Button>
-        </div>
-      </section>
-
-      {/* SUBSCRIBE CTA */}
-      <section className="container pb-24">
-        <div className="relative overflow-hidden rounded-3xl bg-secondary/40 border border-border p-10 md:p-16 text-center">
-          <div className="absolute inset-0 grain opacity-10" />
-          <div className="relative">
-            <Icon name="Mail" size={36} className="text-primary mx-auto mb-5" />
-            <h2 className="font-display font-700 uppercase text-3xl md:text-5xl mb-4">
-              Не пропустите событие в вашем городе
-            </h2>
-            <p className="text-muted-foreground max-w-lg mx-auto mb-8">
-              Подпишитесь — и узнавайте об анонсах, программе и новых участниках первыми.
-            </p>
-            <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Ваш e-mail"
-                className="flex-1 h-12 rounded-full bg-background border border-border px-5 outline-none focus:border-primary transition-colors"
-              />
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-600 rounded-full h-12 px-8">
-                Подписаться
-              </Button>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      {/* FOOTER */}
-      <footer className="border-t border-border">
-        <div className="container py-12 flex flex-col md:flex-row justify-between gap-8">
-          <div>
-            <Logo className="mb-4" />
-            <p className="text-sm text-muted-foreground max-w-xs">
-              Международная выставка High-End аудио. Организатор — «Мидэкспо», с 1996 года.
-            </p>
-          </div>
-          <div className="flex gap-12 text-sm">
-            <div className="space-y-2">
-              <div className="font-600 mb-3">Навигация</div>
-              {['Выставки', 'Участникам', 'Посетителям'].map((i) => (
-                <a key={i} href="#" className="block text-muted-foreground hover:text-foreground">{i}</a>
-              ))}
-            </div>
-            <div className="space-y-2">
-              <div className="font-600 mb-3">Контакты</div>
-              <a href="#" className="block text-muted-foreground hover:text-foreground">Пресс-центр</a>
-              <a href="#" className="block text-muted-foreground hover:text-foreground">Мобильное приложение</a>
-              <a href="#" className="block text-muted-foreground hover:text-foreground">О проекте</a>
+        <div className="border-t border-[#e8e8ec]">
+          <div className="max-w-[1220px] mx-auto px-6 py-5 flex flex-wrap justify-between gap-3 text-[11px] text-[#b0b3c6] font-300">
+            <span>© 1996–2026 HI FI SHOW · Мидэкспо. Все права защищены.</span>
+            <div className="flex gap-5">
+              <a href="#" className="hover:text-[#242940] transition-colors no-underline">Политика конфиденциальности</a>
+              <a href="#" className="hover:text-[#242940] transition-colors no-underline">Контакты</a>
             </div>
           </div>
-        </div>
-        <div className="container py-5 border-t border-border text-xs text-muted-foreground flex flex-wrap justify-between gap-2">
-          <span>© 1996–2026 HI FI SHOW · Мидэкспо</span>
-          <span>Москва · Санкт-Петербург · Екатеринбург</span>
         </div>
       </footer>
     </div>

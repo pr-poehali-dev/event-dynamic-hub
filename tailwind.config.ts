@@ -20,8 +20,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				display: ['Oswald', 'sans-serif'],
-				sans: ['Montserrat', 'sans-serif']
+				display: ['"Nunito Sans"', 'sans-serif'],
+				sans: ['"Nunito Sans"', 'sans-serif']
 			},
 			colors: {
 				border: 'hsl(var(--border))',

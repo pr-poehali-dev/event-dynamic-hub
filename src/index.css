@@ -4,33 +4,36 @@
 
 @layer base {
   :root {
-    --background: 40 30% 98%;
-    --foreground: 30 18% 12%;
+    --background: 0 0% 100%;
+    --foreground: 232 32% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 30 18% 12%;
+    --card-foreground: 232 32% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 30 18% 12%;
+    --popover-foreground: 232 32% 20%;
 
-    --primary: 33 90% 48%;
-    --primary-foreground: 40 30% 99%;
+    --primary: 232 32% 20%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 36 24% 93%;
-    --secondary-foreground: 30 18% 12%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 232 32% 20%;
 
-    --muted: 36 22% 94%;
-    --muted-foreground: 30 8% 42%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 232 15% 50%;
 
-    --accent: 33 90% 48%;
-    --accent-foreground: 40 30% 99%;
+    --accent: 232 32% 20%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 72% 51%;
-    --destructive-foreground: 40 30% 99%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 36 18% 86%;
-    --input: 36 18% 86%;
-    --ring: 33 90% 48%;
+    --border: 220 13% 88%;
+    --input: 220 13% 88%;
+    --ring: 232 32% 20%;
+
+    --hes-dark: #242940;
+    --hes-red: #c0392b;
 
     --radius: 0.5rem;
 
@@ -97,14 +100,18 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
   }
   h1,
   h2,
   h3,
-  h4,
-  .font-display {
-    font-family: "Oswald", sans-serif;
+  h4 {
+    font-family: "Nunito Sans", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--hes-dark);
   }
 }
 
