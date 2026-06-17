@@ -70,6 +70,22 @@ const marqueeBrands = [
   'Dynaudio', 'Pro-Ject', 'Audio-Technica', 'KEF', 'Cambridge Audio',
 ];
 
+const Logo = ({ className = '' }: { className?: string }) => (
+  <div className={`inline-flex items-center gap-2 ${className}`}>
+    <div className="flex items-center justify-center w-9 h-9 rounded-md bg-primary text-primary-foreground">
+      <Icon name="AudioLines" size={20} />
+    </div>
+    <div className="leading-none">
+      <div className="font-display font-700 text-lg tracking-[0.18em]">
+        HI<span className="text-primary">FI</span>SHOW
+      </div>
+      <div className="text-[9px] uppercase tracking-[0.32em] text-muted-foreground font-500 mt-0.5">
+        Hi-Fi &amp; High-End
+      </div>
+    </div>
+  </div>
+);
+
 function useCountdown(target: Date) {
   const [diff, setDiff] = useState(target.getTime() - Date.now());
   useEffect(() => {
@@ -91,9 +107,7 @@ const Index = () => {
       {/* NAV */}
       <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-background/70 border-b border-border">
         <div className="container flex items-center justify-between h-16">
-          <div className="font-display font-700 text-xl tracking-[0.2em]">
-            HI<span className="text-primary">FI</span>SHOW
-          </div>
+          <Logo />
           <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground font-500">
             {['Выставки', 'Участникам', 'Посетителям', 'Пресс-центр', 'О проекте'].map((i) => (
               <a key={i} href="#" className="hover:text-foreground transition-colors">{i}</a>
@@ -109,8 +123,9 @@ const Index = () => {
       <section className="relative min-h-screen flex items-end">
         <div className="absolute inset-0">
           <img src={HERO_IMG} alt="HI FI SHOW" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/30" />
-          <div className="absolute inset-0 grain opacity-[0.15] mix-blend-overlay" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background/45" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/85 via-background/30 to-transparent" />
+          <div className="absolute inset-0 grain opacity-[0.06] mix-blend-multiply" />
         </div>
 
         <div className="container relative z-10 pb-20 pt-32">
@@ -296,9 +311,7 @@ const Index = () => {
       <footer className="border-t border-border">
         <div className="container py-12 flex flex-col md:flex-row justify-between gap-8">
           <div>
-            <div className="font-display font-700 text-2xl tracking-[0.2em] mb-3">
-              HI<span className="text-primary">FI</span>SHOW
-            </div>
+            <Logo className="mb-4" />
             <p className="text-sm text-muted-foreground max-w-xs">
               Международная выставка High-End аудио. Организатор — «Мидэкспо», с 1996 года.
             </p>
