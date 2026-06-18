@@ -83,7 +83,7 @@ export default function HeaderEvent({ eventTitle, eventSlug }: Props) {
             className="hidden md:inline-block px-6 py-2.5 text-[12px] font-semibold tracking-[0.12em] uppercase text-white hover:opacity-80 transition-opacity no-underline"
             style={{ background: D }}
           >
-            Билеты
+            Регистрация
           </a>
           <button className="lg:hidden p-2" onClick={() => setOpen(!open)}>
             <Icon name={open ? 'X' : 'Menu'} size={22} />
