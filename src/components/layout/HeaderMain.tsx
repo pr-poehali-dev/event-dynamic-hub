@@ -11,7 +11,8 @@ const Logo = () => (
     <img
       src={LOGO_URL}
       alt="HiFi & High End Show"
-      className="h-48 w-auto object-contain group-hover:opacity-80 transition-opacity"
+      className="h-96 w-auto object-contain"
+      style={{ animation: 'logo-shimmer 3s ease-in-out infinite' }}
     />
   </Link>
 );
