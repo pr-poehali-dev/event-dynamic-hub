@@ -7,17 +7,15 @@ import BrandsTicker from '@/components/layout/BrandsTicker';
 import { events, news } from '@/data/events';
 import type { RoomEntry } from '@/data/events';
 
-const HERO_IMG =
-  'https://cdn.poehali.dev/projects/bfa2ab91-7ee9-4bb0-8d91-527bb910c1ff/files/dbd7ff40-fd1c-4162-bf40-8a4b5b9576c3.jpg';
-
 const D = '#242940';
 
 const TABS = [
+  { id: 'about',        label: 'О выставке' },
   { id: 'participants', label: 'Участники и бренды' },
-  { id: 'program',     label: 'Программа' },
-  { id: 'news',        label: 'Новости' },
-  { id: 'media',       label: 'Фото и видео' },
-  { id: 'subscribe',   label: 'Подписка' },
+  { id: 'program',      label: 'Программа' },
+  { id: 'news',         label: 'Новости' },
+  { id: 'media',        label: 'Фото и видео' },
+  { id: 'subscribe',    label: 'Подписка' },
 ];
 
 function NavigationModal({ rooms, onClose }: { rooms: RoomEntry[]; onClose: () => void }) {
@@ -109,7 +107,7 @@ function NavigationModal({ rooms, onClose }: { rooms: RoomEntry[]; onClose: () =
 export default function EventPage() {
   const { slug } = useParams<{ slug: string }>();
   const event = events.find(e => e.slug === slug);
-  const [activeTab, setActiveTab] = useState('participants');
+  const [activeTab, setActiveTab] = useState('about');
   const [navOpen, setNavOpen] = useState(false);
 
   if (!event) {
@@ -136,7 +134,7 @@ export default function EventPage() {
 
       {/* ── HERO ── */}
       <section className="relative h-[540px] md:h-[620px] overflow-hidden">
-        <img src={HERO_IMG} alt={event.title} className="w-full h-full object-cover object-center" />
+        <img src={event.heroImage} alt={event.title} className="w-full h-full object-cover object-center" />
         <div
           className="absolute inset-0"
           style={{ background: 'linear-gradient(to right, rgba(36,41,64,0.88) 0%, rgba(36,41,64,0.5) 55%, rgba(36,41,64,0.1) 100%)' }}
@@ -200,6 +198,79 @@ export default function EventPage() {
 
       {/* ── CONTENT ── */}
       <div className="max-w-[1220px] mx-auto px-6 py-14 w-full flex-1">
+
+        {/* О ВЫСТАВКЕ */}
+        {activeTab === 'about' && (
+          <div>
+            <h2 className="font-light m-0 mb-10" style={{ fontSize: '2rem', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+              О выставке
+            </h2>
+            <div className="grid md:grid-cols-2 gap-14 mb-14">
+              <div>
+                <p className="text-sm font-light text-[#6a6e80] leading-relaxed m-0 mb-5">
+                  {event.about.description}
+                </p>
+                <div className="mt-6">
+                  <p className="text-[11px] font-semibold tracking-[0.24em] uppercase text-[#8890a8] mb-4">Особенности</p>
+                  <ul className="list-none p-0 m-0 space-y-3">
+                    {event.about.highlights.map((h) => (
+                      <li key={h} className="flex items-start gap-3 text-sm font-light" style={{ color: D }}>
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0" style={{ background: D }} />
+                        {h}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <div className="flex flex-col gap-4">
+                <div className="grid grid-cols-3 gap-4">
+                  {[
+                    { num: event.about.floors, label: 'Этажей' },
+                    { num: event.about.exhibitors, label: 'Участников' },
+                    { num: `${(event.about.visitors / 1000).toFixed(0)}K+`, label: 'Посетителей' },
+                  ].map(({ num, label }) => (
+                    <div key={label} className="border border-[#e8e8ec] p-5 text-center">
+                      <div className="font-light mb-1" style={{ fontSize: '2rem', color: D, lineHeight: 1 }}>{num}</div>
+                      <div className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[#8890a8]">{label}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="border border-[#e8e8ec] p-6 flex flex-col gap-3">
+                  {[
+                    { icon: 'Calendar', label: 'Даты', value: event.dates },
+                    { icon: 'MapPin',   label: 'Место', value: event.venue },
+                    { icon: 'Navigation', label: 'Адрес', value: event.address },
+                  ].map(({ icon, label, value }) => (
+                    <div key={label} className="flex items-start gap-3">
+                      <Icon name={icon as 'Calendar'} size={15} className="mt-0.5 shrink-0" style={{ color: D }} />
+                      <div>
+                        <span className="text-[10px] font-semibold tracking-[0.18em] uppercase text-[#8890a8] mr-2">{label}</span>
+                        <span className="text-sm font-light" style={{ color: D }}>{value}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex flex-wrap gap-3 mt-2">
+                  <a
+                    href="#register"
+                    onClick={() => setActiveTab('about')}
+                    className="px-8 py-3 text-[12px] font-semibold tracking-[0.14em] uppercase text-white no-underline hover:opacity-80 transition-opacity"
+                    style={{ background: D }}
+                  >
+                    Зарегистрироваться
+                  </a>
+                  <button
+                    onClick={() => setNavOpen(true)}
+                    className="px-8 py-3 text-[12px] font-semibold tracking-[0.14em] uppercase border border-[#242940] hover:bg-[#f7f7fa] transition-colors cursor-pointer"
+                    style={{ background: 'transparent', color: D }}
+                  >
+                    Навигация
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* УЧАСТНИКИ */}
         {activeTab === 'participants' && (
