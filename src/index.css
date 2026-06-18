@@ -2,16 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@keyframes logo-shimmer {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.65;
-  }
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;
