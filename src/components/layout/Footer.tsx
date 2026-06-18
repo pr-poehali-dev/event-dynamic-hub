@@ -20,10 +20,10 @@ export default function Footer() {
           <h4 className="text-[11px] font-bold tracking-[0.22em] uppercase m-0 mb-4" style={{ color: D }}>Мероприятия</h4>
           <ul className="list-none p-0 m-0 space-y-2">
             {[
-              { label: 'Москва · Осень', to: '/moscow-autumn' },
-              { label: 'Санкт-Петербург', to: '/spb' },
-              { label: 'Москва · Весна', to: '/moscow-spring' },
-              { label: 'Екатеринбург', to: '/ekb' },
+              { label: 'Москва · Осень', to: '/event/moscow-autumn' },
+              { label: 'Санкт-Петербург', to: '/event/spb' },
+              { label: 'Москва · Весна', to: '/event/moscow-spring' },
+              { label: 'Екатеринбург', to: '/event/ekb' },
             ].map(({ label, to }) => (
               <li key={to}>
                 <Link to={to} className="text-sm text-[#8890a8] font-light hover:text-[#242940] transition-colors no-underline">{label}</Link>

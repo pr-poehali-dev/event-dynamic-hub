@@ -60,7 +60,7 @@ export default function HeaderMain() {
 
         <div className="flex items-center gap-3">
           <Link
-            to="/moscow-autumn#register"
+            to="/event/moscow-autumn#register"
             className="hidden md:inline-block px-6 py-2.5 text-[12px] font-semibold tracking-[0.12em] uppercase text-white hover:opacity-80 transition-opacity no-underline"
             style={{ background: D }}
           >

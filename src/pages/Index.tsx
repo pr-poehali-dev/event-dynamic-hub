@@ -50,7 +50,7 @@ export default function Index() {
               23–25 Октября 2026
             </p>
             <Link
-              to={`/${next.slug}#register`}
+              to={`/event/${next.slug}#register`}
               className="inline-block px-10 py-3.5 text-[12px] font-semibold tracking-[0.18em] uppercase text-white no-underline hover:opacity-80 transition-opacity border border-white/30 hover:border-white"
               style={{ background: D }}
             >
@@ -78,7 +78,7 @@ export default function Index() {
             return (
               <Link
                 key={ev.id}
-                to={`/${ev.slug}`}
+                to={`/event/${ev.slug}`}
                 className={`group flex flex-col border-r border-b border-[#e8e8ec] p-7 no-underline transition-colors hover:bg-[#f7f7fa] ${
                   st === 'soon' || st === 'current' ? 'bg-[#f7f7fa]' : 'bg-white'
                 }`}

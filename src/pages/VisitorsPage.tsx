@@ -71,7 +71,7 @@ export default function VisitorsPage() {
                   className="w-10 h-10 flex items-center justify-center mb-5"
                   style={{ background: '#f0f0f4' }}
                 >
-                  <Icon name={r.icon as any} size={18} style={{ color: D }} />
+                  <Icon name={r.icon as 'Headphones'} size={18} style={{ color: D }} />
                 </div>
                 <h3 className="text-sm font-semibold tracking-[0.06em] uppercase m-0 mb-3" style={{ color: D }}>{r.title}</h3>
                 <p className="text-sm font-light text-[#6a6e80] m-0 leading-relaxed">{r.text}</p>
@@ -110,7 +110,7 @@ export default function VisitorsPage() {
                   ))}
                 </ul>
                 <Link
-                  to="/moscow-autumn#register"
+                  to="/event/moscow-autumn#register"
                   className="block text-center py-3 text-[12px] font-semibold tracking-[0.14em] uppercase no-underline transition-opacity hover:opacity-80"
                   style={t.accent ? { background: D, color: '#fff' } : { border: `1px solid ${D}`, color: D }}
                 >
@@ -135,7 +135,7 @@ export default function VisitorsPage() {
               ].map((item) => (
                 <div key={item.label} className="flex gap-4 items-start">
                   <div className="w-9 h-9 flex items-center justify-center shrink-0" style={{ background: '#f0f0f4' }}>
-                    <Icon name={item.icon as any} size={16} style={{ color: D }} />
+                    <Icon name={item.icon as 'Train'} size={16} style={{ color: D }} />
                   </div>
                   <div>
                     <p className="text-[11px] font-semibold tracking-[0.18em] uppercase m-0 mb-0.5" style={{ color: D }}>{item.label}</p>
