@@ -357,6 +357,18 @@ export const brands = [
   'Cambridge Audio', 'Accuphase', 'Luxman', 'Pass Labs', 'Linn',
 ];
 
+export const exhibitionPartners = [
+  'McIntosh', 'Focal', 'Bowers & Wilkins', 'Sonus faber', 'Naim Audio',
+  'Accuphase', 'Luxman', 'Pass Labs', 'Dynaudio', 'KEF',
+  'Pro-Ject', 'Linn', 'Marantz', 'Cambridge Audio', 'Rotel',
+];
+
+export const mediaPartners = [
+  'Салон AV', 'Stereo & Video', 'Hi-Fi.ru', 'AudioMania Blog', 'InakustikRU',
+  'Звук', 'Аудиофил', 'HighFidelity.ru', 'Stereo+', 'ProSound',
+  'THX Россия', 'AudioReview.ru', 'HiFiNews.ru',
+];
+
 export const news = [
   { tag: 'Анонс', date: '17 июня 2026', title: 'McIntosh представит флагманский усилитель MC3500 на московской выставке', city: 'Москва · Осень' },
   { tag: 'Программа', date: '17 июня 2026', title: 'Jazz & Rock Sound: вечерний концерт на виниле в главном зале', city: 'Москва · Осень' },

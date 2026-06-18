@@ -1,10 +1,15 @@
-import { brands } from '@/data/events';
+import { exhibitionPartners, mediaPartners } from '@/data/events';
 
-export default function BrandsTicker() {
-  const doubled = [...brands, ...brands];
+const D = '#242940';
+
+function Ticker({ items, reverse }: { items: string[]; reverse?: boolean }) {
+  const doubled = [...items, ...items];
   return (
-    <div className="border-y border-[#e8e8ec] py-6 overflow-hidden bg-[#f7f7fa]">
-      <div className="flex w-max animate-marquee">
+    <div className="overflow-hidden">
+      <div
+        className="flex w-max"
+        style={{ animation: `marquee${reverse ? '-reverse' : ''} 41.7s linear infinite` }}
+      >
         {doubled.map((b, i) => (
           <span
             key={i}
@@ -14,6 +19,31 @@ export default function BrandsTicker() {
             <span className="text-[#d0d3df] text-[8px]">◆</span>
           </span>
         ))}
+      </div>
+    </div>
+  );
+}
+
+export default function BrandsTicker() {
+  return (
+    <div className="border-y border-[#e8e8ec] bg-[#f7f7fa]">
+      <div className="py-3">
+        <p
+          className="text-[9px] font-semibold tracking-[0.3em] uppercase text-center mb-2"
+          style={{ color: D }}
+        >
+          Партнёры выставки
+        </p>
+        <Ticker items={exhibitionPartners} />
+      </div>
+      <div className="border-t border-[#e8e8ec] py-3">
+        <p
+          className="text-[9px] font-semibold tracking-[0.3em] uppercase text-center mb-2"
+          style={{ color: D }}
+        >
+          Информационные партнёры
+        </p>
+        <Ticker items={mediaPartners} reverse />
       </div>
     </div>
   );
