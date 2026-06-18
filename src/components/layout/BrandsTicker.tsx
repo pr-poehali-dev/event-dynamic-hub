@@ -3,7 +3,7 @@ import { brands } from '@/data/events';
 export default function BrandsTicker() {
   const doubled = [...brands, ...brands];
   return (
-    <div className="border-y border-[#e8e8ec] py-4 overflow-hidden bg-[#f7f7fa]">
+    <div className="border-y border-[#e8e8ec] py-6 overflow-hidden bg-[#f7f7fa]">
       <div className="flex w-max animate-marquee">
         {doubled.map((b, i) => (
           <span
