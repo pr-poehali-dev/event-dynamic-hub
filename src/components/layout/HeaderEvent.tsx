@@ -4,17 +4,15 @@ import Icon from '@/components/ui/icon';
 
 const D = '#242940';
 
+const LOGO_URL = 'https://cdn.poehali.dev/projects/bfa2ab91-7ee9-4bb0-8d91-527bb910c1ff/bucket/29afd07b-f46d-4515-9cc9-a1b67568db59.jpg';
+
 const Logo = () => (
-  <Link to="/" className="flex items-center gap-3 no-underline group">
-    <div className="flex flex-col items-center justify-center w-11 h-11 border-2 shrink-0 group-hover:opacity-80 transition-opacity" style={{ borderColor: D }}>
-      <span className="text-[10px] font-bold tracking-[0.15em] leading-none" style={{ color: D }}>HI FI</span>
-      <div className="w-full h-px my-[3px]" style={{ background: D }} />
-      <span className="text-[8px] font-light tracking-[0.2em] leading-none" style={{ color: D }}>SHOW</span>
-    </div>
-    <div>
-      <div className="text-[13px] font-bold tracking-[0.22em] uppercase leading-none" style={{ color: D }}>HI FI SHOW</div>
-      <div className="text-[10px] font-light tracking-[0.18em] uppercase text-[#8890a8] mt-0.5">Hi-Fi &amp; High-End</div>
-    </div>
+  <Link to="/" className="flex items-center no-underline group">
+    <img
+      src={LOGO_URL}
+      alt="HiFi & High End Show"
+      className="h-12 w-auto object-contain group-hover:opacity-80 transition-opacity"
+    />
   </Link>
 );
 

@@ -1,23 +1,16 @@
 import { Link } from 'react-router-dom';
 
 const D = '#242940';
+const LOGO_URL = 'https://cdn.poehali.dev/projects/bfa2ab91-7ee9-4bb0-8d91-527bb910c1ff/bucket/29afd07b-f46d-4515-9cc9-a1b67568db59.jpg';
 
 export default function Footer() {
   return (
     <footer className="border-t border-[#e8e8ec] mt-auto">
       <div className="max-w-[1220px] mx-auto px-6 py-12 grid sm:grid-cols-2 md:grid-cols-4 gap-8">
         <div>
-          <div className="flex items-center gap-3 mb-4">
-            <div className="flex flex-col items-center justify-center w-9 h-9 border-2 shrink-0" style={{ borderColor: D }}>
-              <span className="text-[8px] font-bold tracking-[0.1em] leading-none" style={{ color: D }}>HI FI</span>
-              <div className="w-full h-px my-[2px]" style={{ background: D }} />
-              <span className="text-[7px] font-light tracking-[0.12em] leading-none" style={{ color: D }}>SHOW</span>
-            </div>
-            <div>
-              <div className="text-[11px] font-bold tracking-[0.2em] uppercase" style={{ color: D }}>HI FI SHOW</div>
-              <div className="text-[9px] font-light tracking-[0.15em] uppercase text-[#8890a8]">Hi-Fi & High-End</div>
-            </div>
-          </div>
+          <Link to="/" className="inline-block mb-4 no-underline">
+            <img src={LOGO_URL} alt="HiFi & High End Show" className="h-14 w-auto object-contain" />
+          </Link>
           <p className="text-sm text-[#8890a8] font-light leading-relaxed m-0">
             Организатор — «Мидэкспо».<br />Выставка проводится с 1996 года.
           </p>
