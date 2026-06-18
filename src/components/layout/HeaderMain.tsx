@@ -11,7 +11,7 @@ const Logo = () => (
     <img
       src={LOGO_URL}
       alt="HiFi & High End Show"
-      className="h-24 w-auto object-contain group-hover:opacity-80 transition-opacity"
+      className="h-48 w-auto object-contain group-hover:opacity-80 transition-opacity"
     />
   </Link>
 );

@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="max-w-[1220px] mx-auto px-6 py-12 grid sm:grid-cols-2 md:grid-cols-4 gap-8">
         <div>
           <Link to="/" className="inline-block mb-4 no-underline">
-            <img src={LOGO_URL} alt="HiFi & High End Show" className="h-28 w-auto object-contain" />
+            <img src={LOGO_URL} alt="HiFi & High End Show" className="h-56 w-auto object-contain" />
           </Link>
           <p className="text-sm text-[#8890a8] font-light leading-relaxed m-0">
             Организатор — «Мидэкспо».<br />Выставка проводится с 1996 года.
