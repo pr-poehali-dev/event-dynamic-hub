@@ -4,7 +4,7 @@ import Icon from '@/components/ui/icon';
 import HeaderEvent from '@/components/layout/HeaderEvent';
 import Footer from '@/components/layout/Footer';
 import BrandsTicker from '@/components/layout/BrandsTicker';
-import { events, news } from '@/data/events';
+import { events } from '@/data/events';
 import type { RoomEntry } from '@/data/events';
 
 const D = '#242940';
@@ -365,34 +365,6 @@ export default function EventPage() {
                 ))}
               </div>
             )}
-          </div>
-        )}
-
-        {/* НОВОСТИ */}
-        {activeTab === 'news' && (
-          <div>
-            <h2 className="font-light m-0 mb-10" style={{ fontSize: '2rem', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
-              Новости
-            </h2>
-            <div className="divide-y divide-[#e8e8ec]">
-              {news.map((n, i) => (
-                <a key={i} href="#" className="group flex items-start gap-6 py-5 no-underline hover:bg-[#f7f7fa] -mx-3 px-3 transition-colors">
-                  <div className="hidden sm:block min-w-[90px] pt-0.5 text-right">
-                    <span className="text-[11px] font-light text-[#b0b3c6]">{n.date}</span>
-                  </div>
-                  <div className="w-px self-stretch bg-[#e8e8ec] hidden sm:block" />
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-1.5">
-                      <span className="text-[10px] font-semibold tracking-[0.18em] uppercase px-2 py-0.5 border border-[#d0d3df]" style={{ color: D }}>
-                        {n.tag}
-                      </span>
-                    </div>
-                    <p className="text-sm font-normal m-0 group-hover:text-[#5a6080] transition-colors" style={{ color: D }}>{n.title}</p>
-                  </div>
-                  <Icon name="ArrowRight" size={15} className="text-[#c8cad6] group-hover:text-[#242940] mt-0.5 shrink-0" />
-                </a>
-              ))}
-            </div>
           </div>
         )}
 
