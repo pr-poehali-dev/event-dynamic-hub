@@ -1,6 +1,6 @@
 const D = '#242940';
 
-function Ticker({ items, reverse }: { items: string[]; reverse?: boolean }) {
+function Ticker({ items = [], reverse }: { items?: string[]; reverse?: boolean }) {
   const doubled = [...items, ...items];
   return (
     <div className="overflow-hidden">
@@ -23,11 +23,11 @@ function Ticker({ items, reverse }: { items: string[]; reverse?: boolean }) {
 }
 
 interface Props {
-  exhibitionPartners: string[];
-  mediaPartners: string[];
+  exhibitionPartners?: string[];
+  mediaPartners?: string[];
 }
 
-export default function BrandsTicker({ exhibitionPartners, mediaPartners }: Props) {
+export default function BrandsTicker({ exhibitionPartners = [], mediaPartners = [] }: Props) {
   return (
     <div className="border-y border-[#e8e8ec] bg-[#f7f7fa]">
       <div className="py-3">
