@@ -60,10 +60,7 @@ export default function Index() {
         </div>
       </section>
 
-      <BrandsTicker
-        exhibitionPartners={next.exhibitionPartners}
-        mediaPartners={next.mediaPartners}
-      />
+      <BrandsTicker />
 
       {/* ── 4 СОБЫТИЯ ── */}
       <section className="max-w-[1220px] mx-auto px-6 py-16 w-full">

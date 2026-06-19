@@ -433,10 +433,7 @@ export default function EventPage() {
         )}
       </div>
 
-      <BrandsTicker
-        exhibitionPartners={event.exhibitionPartners}
-        mediaPartners={event.mediaPartners}
-      />
+      <BrandsTicker />
       <Footer />
 
       {navOpen && <NavigationModal rooms={event.rooms} onClose={() => setNavOpen(false)} />}
