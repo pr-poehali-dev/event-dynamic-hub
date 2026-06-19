@@ -72,40 +72,63 @@ export default function Index() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-0 border-l border-t border-[#e8e8ec]">
-          {events.map((ev) => {
+          {events.map((ev, idx) => {
             const st = getEventStatus(ev);
             const badge = statusLabel[st];
+            const videoIds = [
+              'DEdYoFVGlB0',
+              'X-Xhm0Y9GAs',
+              'N-4XNQ7_GYU',
+              'C7tDQSuST7g',
+            ];
+            const videoId = videoIds[idx % videoIds.length];
             return (
               <Link
                 key={ev.id}
                 to={`/event/${ev.slug}`}
-                className={`group flex flex-col border-r border-b border-[#e8e8ec] p-7 no-underline transition-colors hover:bg-[#f7f7fa] ${
-                  st === 'soon' || st === 'current' ? 'bg-[#f7f7fa]' : 'bg-white'
-                }`}
+                className="group relative flex flex-col border-r border-b border-[#e8e8ec] no-underline overflow-hidden"
+                style={{ minHeight: '260px' }}
               >
-                <div className="flex items-center justify-between mb-6">
-                  <span
-                    className="text-[10px] font-semibold tracking-[0.2em] uppercase px-3 py-1"
-                    style={{ background: badge.bg, color: badge.color }}
-                  >
-                    {badge.text}
-                  </span>
-                  <Icon
-                    name="ArrowRight"
-                    size={15}
-                    className="text-[#c8cad6] group-hover:text-[#242940] group-hover:translate-x-0.5 transition-all duration-200"
+                {/* Фоновое видео */}
+                <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&disablekb=1`}
+                    allow="autoplay"
+                    className="absolute w-[200%] h-[200%] -top-1/2 -left-1/4 border-0"
+                    title=""
                   />
                 </div>
-                <div className="flex-1">
-                  <p className="text-[11px] font-normal tracking-[0.2em] uppercase text-[#8890a8] m-0 mb-1">{ev.season}</p>
-                  <h3
-                    className="font-bold m-0 mb-3"
-                    style={{ fontSize: '1.2rem', letterSpacing: '0.03em', color: D, textTransform: 'uppercase' }}
-                  >
-                    {ev.city}
-                  </h3>
-                  <p className="text-sm text-[#8890a8] font-normal m-0">{ev.dates}</p>
-                  <p className="text-xs text-[#b0b3c6] font-light m-0 mt-1">{ev.venue}</p>
+                {/* Затемнение */}
+                <div
+                  className="absolute inset-0 transition-opacity duration-300 group-hover:opacity-80"
+                  style={{ background: 'rgba(36,41,64,0.72)' }}
+                />
+                {/* Контент */}
+                <div className="relative z-10 flex flex-col h-full p-7">
+                  <div className="flex items-center justify-between mb-6">
+                    <span
+                      className="text-[10px] font-semibold tracking-[0.2em] uppercase px-3 py-1"
+                      style={{ background: badge.bg, color: badge.color }}
+                    >
+                      {badge.text}
+                    </span>
+                    <Icon
+                      name="ArrowRight"
+                      size={15}
+                      className="text-white/50 group-hover:text-white group-hover:translate-x-0.5 transition-all duration-200"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-[11px] font-normal tracking-[0.2em] uppercase text-white/50 m-0 mb-1">{ev.season}</p>
+                    <h3
+                      className="font-bold m-0 mb-3 text-white"
+                      style={{ fontSize: '1.2rem', letterSpacing: '0.03em', textTransform: 'uppercase' }}
+                    >
+                      {ev.city}
+                    </h3>
+                    <p className="text-sm text-white/60 font-normal m-0">{ev.dates}</p>
+                    <p className="text-xs text-white/40 font-light m-0 mt-1">{ev.venue}</p>
+                  </div>
                 </div>
               </Link>
             );
