@@ -41,6 +41,7 @@ export default function HeaderEvent({ eventTitle }: Props) {
 
         <div className="flex items-center gap-6">
           <nav className="hidden md:flex items-center gap-1">
+            <Link to="/news" className="px-4 py-2 text-[13px] tracking-[0.07em] uppercase text-[#242940] hover:text-[#8890a8] transition-colors no-underline font-normal">Новости</Link>
             <Link to="/media" className="px-4 py-2 text-[13px] tracking-[0.07em] uppercase text-[#242940] hover:text-[#8890a8] transition-colors no-underline font-normal">Медиа</Link>
             <Link to="/contacts" className="px-4 py-2 text-[13px] tracking-[0.07em] uppercase text-[#242940] hover:text-[#8890a8] transition-colors no-underline font-normal">Контакты</Link>
           </nav>
