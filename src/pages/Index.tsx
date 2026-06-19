@@ -75,13 +75,6 @@ export default function Index() {
           {events.map((ev, idx) => {
             const st = getEventStatus(ev);
             const badge = statusLabel[st];
-            const videos = [
-              'https://videos.pexels.com/video-files/3129957/3129957-uhd_2560_1440_25fps.mp4',
-              'https://videos.pexels.com/video-files/4812205/4812205-uhd_2560_1440_25fps.mp4',
-              'https://videos.pexels.com/video-files/3196714/3196714-uhd_2560_1440_25fps.mp4',
-              'https://videos.pexels.com/video-files/2499611/2499611-uhd_2560_1440_25fps.mp4',
-            ];
-            const videoSrc = videos[idx % videos.length];
             return (
               <Link
                 key={ev.id}
@@ -89,17 +82,11 @@ export default function Index() {
                 className="group relative flex flex-col border-r border-b border-[#e8e8ec] no-underline overflow-hidden"
                 style={{ minHeight: '260px' }}
               >
-                {/* Фоновое видео */}
-                <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                  <video
-                    src={videoSrc}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                </div>
+                {/* Фоновое фото с анимацией */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-[6000ms] ease-in-out group-hover:scale-110 scale-105"
+                  style={{ backgroundImage: `url(${ev.heroImage})`, animation: 'ken-burns 8s ease-in-out infinite alternate' }}
+                />
                 {/* Затемнение */}
                 <div
                   className="absolute inset-0 transition-opacity duration-300 group-hover:opacity-80"
