@@ -1,5 +1,3 @@
-import { exhibitionPartners, mediaPartners } from '@/data/events';
-
 const D = '#242940';
 
 function Ticker({ items, reverse }: { items: string[]; reverse?: boolean }) {
@@ -24,7 +22,12 @@ function Ticker({ items, reverse }: { items: string[]; reverse?: boolean }) {
   );
 }
 
-export default function BrandsTicker() {
+interface Props {
+  exhibitionPartners: string[];
+  mediaPartners: string[];
+}
+
+export default function BrandsTicker({ exhibitionPartners, mediaPartners }: Props) {
   return (
     <div className="border-y border-[#e8e8ec] bg-[#f7f7fa]">
       <div className="py-3">

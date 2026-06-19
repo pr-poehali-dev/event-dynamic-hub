@@ -42,6 +42,8 @@ export interface Event {
   participants: Participant[];
   program: Program[];
   rooms: RoomEntry[];
+  exhibitionPartners: string[];
+  mediaPartners: string[];
 }
 
 export const events: Event[] = [
@@ -132,6 +134,8 @@ export const events: Event[] = [
       { room: '201', companies: ['Гармония Звука'], brands: ['Pro-Ject', 'Ortofon'] },
       { room: '202', companies: ['Домашние Технологии'], brands: ['Linn', 'Sonos'] },
     ],
+    exhibitionPartners: ['McIntosh', 'Focal', 'Bowers & Wilkins', 'Sonus faber', 'Naim Audio', 'Accuphase', 'Luxman', 'Pass Labs', 'Dynaudio', 'KEF', 'Pro-Ject', 'Linn', 'Marantz', 'Rotel', 'Ortofon'],
+    mediaPartners: ['Салон AV', 'Stereo & Video', 'Hi-Fi.ru', 'AudioMania Blog', 'Звук', 'Аудиофил', 'HighFidelity.ru', 'Stereo+', 'ProSound'],
   },
   {
     id: 'spb',
@@ -210,6 +214,8 @@ export const events: Event[] = [
       { room: '301', companies: ['Северная Акустика'], brands: ['Amphion', 'Auralic'] },
       { room: '302', companies: ['Аудио Эксперт'], brands: ['Accuphase', 'Harbeth'] },
     ],
+    exhibitionPartners: ['KEF', 'Cambridge Audio', 'Dynaudio', 'Marantz', 'Amphion', 'Auralic', 'Accuphase', 'Harbeth', 'Linn', 'Rega', 'Naim Audio', 'Chord Electronics'],
+    mediaPartners: ['Салон AV', 'Stereo & Video', 'Hi-Fi.ru', 'Звук', 'HighFidelity.ru', 'HiFiNews.ru', 'AudioReview.ru'],
   },
   {
     id: 'moscow-spring',
@@ -280,6 +286,8 @@ export const events: Event[] = [
       { room: '201', companies: ['Мобильный Звук'], brands: ['Astell&Kern', 'Sennheiser', 'Audeze'] },
       { room: '202', companies: ['Цифровой Звук'], brands: ['Roon', 'Auralic'] },
     ],
+    exhibitionPartners: ['Focal', 'Naim Audio', 'Devialet', 'Astell&Kern', 'Sennheiser', 'Audeze', 'Roon', 'Auralic', 'Chord Electronics', 'dCS', 'Lumin', 'Innuos'],
+    mediaPartners: ['Stereo & Video', 'Hi-Fi.ru', 'AudioMania Blog', 'Звук', 'Stereo+', 'ProSound', 'THX Россия'],
   },
   {
     id: 'ekb',
@@ -348,6 +356,8 @@ export const events: Event[] = [
       { room: '102', companies: ['Звуковая Лаборатория'], brands: ['Arcam', 'Monitor Audio'] },
       { room: '201', companies: ['АудиоМания'], brands: ['Focal', 'Bowers & Wilkins'] },
     ],
+    exhibitionPartners: ['Dali', 'Rega', 'Arcam', 'Monitor Audio', 'Focal', 'Bowers & Wilkins', 'Cambridge Audio', 'Pro-Ject', 'Marantz', 'Denon', 'KEF', 'Elac'],
+    mediaPartners: ['Салон AV', 'Hi-Fi.ru', 'Звук', 'HighFidelity.ru', 'AudioReview.ru', 'Stereo+'],
   },
 ];
 

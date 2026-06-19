@@ -60,6 +60,11 @@ export default function Index() {
         </div>
       </section>
 
+      <BrandsTicker
+        exhibitionPartners={next.exhibitionPartners}
+        mediaPartners={next.mediaPartners}
+      />
+
       {/* ── 4 СОБЫТИЯ ── */}
       <section className="max-w-[1220px] mx-auto px-6 py-16 w-full">
         <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
