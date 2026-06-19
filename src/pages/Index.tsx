@@ -75,13 +75,13 @@ export default function Index() {
           {events.map((ev, idx) => {
             const st = getEventStatus(ev);
             const badge = statusLabel[st];
-            const videoIds = [
-              'DEdYoFVGlB0',
-              'X-Xhm0Y9GAs',
-              'N-4XNQ7_GYU',
-              'C7tDQSuST7g',
+            const videos = [
+              'https://videos.pexels.com/video-files/3129957/3129957-uhd_2560_1440_25fps.mp4',
+              'https://videos.pexels.com/video-files/4812205/4812205-uhd_2560_1440_25fps.mp4',
+              'https://videos.pexels.com/video-files/3196714/3196714-uhd_2560_1440_25fps.mp4',
+              'https://videos.pexels.com/video-files/2499611/2499611-uhd_2560_1440_25fps.mp4',
             ];
-            const videoId = videoIds[idx % videoIds.length];
+            const videoSrc = videos[idx % videos.length];
             return (
               <Link
                 key={ev.id}
@@ -91,11 +91,13 @@ export default function Index() {
               >
                 {/* Фоновое видео */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&disablekb=1`}
-                    allow="autoplay"
-                    className="absolute w-[200%] h-[200%] -top-1/2 -left-1/4 border-0"
-                    title=""
+                  <video
+                    src={videoSrc}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
                 </div>
                 {/* Затемнение */}
