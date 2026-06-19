@@ -21,7 +21,7 @@ const navLinks = [
   { label: 'Посетителям', href: '/visitors' },
   { label: 'Участникам', href: '/exhibitors' },
   { label: 'Новости', href: '/news' },
-  { label: 'Фото и видео', href: '/media' },
+  { label: 'Медиа', href: '/media' },
   { label: 'Премия', href: '/award' },
   { label: 'Контакты', href: '/contacts' },
 ];
