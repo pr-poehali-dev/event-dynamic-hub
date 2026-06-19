@@ -85,7 +85,7 @@ export default function Index() {
                 {/* Фоновое фото с анимацией */}
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-[6000ms] ease-in-out group-hover:scale-110 scale-105"
-                  style={{ backgroundImage: `url(${ev.heroImage})`, animation: 'ken-burns 8s ease-in-out infinite alternate' }}
+                  style={{ backgroundImage: `url(${ev.heroImage})`, animation: 'ken-burns 4s ease-in-out infinite alternate' }}
                 />
                 {/* Затемнение */}
                 <div

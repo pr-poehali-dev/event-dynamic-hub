@@ -164,6 +164,7 @@
       transform: scale(1.12) translate(2%, 2%);
     }
   }
+
   @keyframes marquee {
     from {
       transform: translateX(0);
