@@ -32,7 +32,7 @@ export default function NewsPage() {
       </section>
 
       {/* FILTER */}
-      <div className="border-b border-[#e8e8ec] bg-white sticky top-[68px] z-40">
+      <div className="border-b border-[#e8e8ec] bg-white sticky top-[148px] z-40">
         <div className="max-w-[1220px] mx-auto px-6 flex gap-1 overflow-x-auto py-3">
           {tags.map(tag => (
             <button

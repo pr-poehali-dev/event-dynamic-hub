@@ -42,7 +42,7 @@ export default function HeaderMain() {
         </div>
       </div>
 
-      <div className="max-w-[1220px] mx-auto px-6 flex items-center justify-between h-[68px]">
+      <div className="max-w-[1220px] mx-auto px-6 flex items-center justify-between h-[148px]">
         <Logo />
 
         <nav className="hidden lg:flex items-center">

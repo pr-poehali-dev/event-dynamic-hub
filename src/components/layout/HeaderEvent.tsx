@@ -30,7 +30,7 @@ export default function HeaderEvent({ eventTitle }: Props) {
         </div>
       </div>
 
-      <div className="max-w-[1220px] mx-auto px-6 flex items-center justify-between h-[68px]">
+      <div className="max-w-[1220px] mx-auto px-6 flex items-center justify-between h-[148px]">
         <Link to="/" className="flex items-center no-underline group">
           <img
             src={LOGO_URL}

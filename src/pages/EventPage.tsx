@@ -176,7 +176,7 @@ export default function EventPage() {
       </section>
 
       {/* ── TABS ── */}
-      <div className="border-b border-[#e8e8ec] bg-white sticky top-[68px] z-40">
+      <div className="border-b border-[#e8e8ec] bg-white sticky top-[148px] z-40">
         <div className="max-w-[1220px] mx-auto px-6 flex overflow-x-auto">
           {TABS.map(tab => (
             <button
