@@ -32,15 +32,6 @@ export default function HeaderMain() {
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-[#e8e8ec]">
-      <div className="hidden md:flex border-b border-[#f0f0f4] text-[11px] text-[#8890a8] py-1.5">
-        <div className="max-w-[1220px] w-full mx-auto px-6 flex justify-between">
-          <span>Международная выставка Hi-Fi &amp; High-End аппаратуры · с 1996 года</span>
-          <div className="flex gap-5">
-            <Link to="/media" className="hover:text-[#242940] transition-colors no-underline">Пресс-центр</Link>
-            <Link to="/contacts" className="hover:text-[#242940] transition-colors no-underline">Контакты</Link>
-          </div>
-        </div>
-      </div>
 
       <div className="max-w-[1220px] mx-auto px-6 flex items-center justify-between h-[148px]">
         <Logo />
