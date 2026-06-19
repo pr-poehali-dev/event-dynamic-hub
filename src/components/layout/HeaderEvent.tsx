@@ -1,37 +1,18 @@
-import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
+import { useState } from 'react';
 
 const D = '#242940';
 
 const LOGO_URL = 'https://cdn.poehali.dev/projects/bfa2ab91-7ee9-4bb0-8d91-527bb910c1ff/bucket/29afd07b-f46d-4515-9cc9-a1b67568db59.jpg';
-
-const Logo = () => (
-  <Link to="/" className="flex items-center no-underline group">
-    <img
-      src={LOGO_URL}
-      alt="HiFi & High End Show"
-      className="h-12 w-auto object-contain group-hover:opacity-80 transition-opacity"
-    />
-  </Link>
-);
-
-const navLinks = [
-  { label: 'О выставке', href: '#about' },
-  { label: 'Посетителям', href: '#visitors' },
-  { label: 'Участникам', href: '#participants' },
-  { label: 'Медиа', href: '/media' },
-  { label: 'Контакты', href: '/contacts' },
-];
 
 interface Props {
   eventTitle: string;
   eventSlug: string;
 }
 
-export default function HeaderEvent({ eventTitle, eventSlug }: Props) {
+export default function HeaderEvent({ eventTitle }: Props) {
   const [open, setOpen] = useState(false);
-  const { pathname } = useLocation();
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-[#e8e8ec]">
@@ -50,32 +31,13 @@ export default function HeaderEvent({ eventTitle, eventSlug }: Props) {
       </div>
 
       <div className="max-w-[1220px] mx-auto px-6 flex items-center justify-between h-[68px]">
-        <Logo />
-
-        <nav className="hidden lg:flex items-center">
-          {navLinks.map(({ label, href }) => {
-            const isExternal = href.startsWith('/');
-            return isExternal ? (
-              <Link
-                key={href}
-                to={href}
-                className={`px-4 py-2 text-[13px] tracking-[0.07em] uppercase transition-colors no-underline ${
-                  pathname === href ? 'text-[#242940] font-semibold' : 'text-[#242940] hover:text-[#8890a8] font-normal'
-                }`}
-              >
-                {label}
-              </Link>
-            ) : (
-              <a
-                key={href}
-                href={href}
-                className="px-4 py-2 text-[13px] tracking-[0.07em] uppercase transition-colors no-underline text-[#242940] hover:text-[#8890a8] font-normal"
-              >
-                {label}
-              </a>
-            );
-          })}
-        </nav>
+        <Link to="/" className="flex items-center no-underline group">
+          <img
+            src={LOGO_URL}
+            alt="HiFi & High End Show"
+            className="h-12 w-auto object-contain group-hover:opacity-80 transition-opacity"
+          />
+        </Link>
 
         <div className="flex items-center gap-3">
           <a
@@ -85,25 +47,22 @@ export default function HeaderEvent({ eventTitle, eventSlug }: Props) {
           >
             Регистрация
           </a>
-          <button className="lg:hidden p-2" onClick={() => setOpen(!open)}>
+          <button className="md:hidden p-2" onClick={() => setOpen(!open)}>
             <Icon name={open ? 'X' : 'Menu'} size={22} />
           </button>
         </div>
       </div>
 
       {open && (
-        <div className="lg:hidden border-t border-[#e8e8ec] bg-white">
-          {navLinks.map(({ label, href }) => (
-            <a
-              key={href}
-              href={href}
-              onClick={() => setOpen(false)}
-              className="block px-6 py-3 text-sm uppercase tracking-wider border-b border-[#f0f0f4] hover:bg-[#f7f7fa] no-underline"
-              style={{ color: D }}
-            >
-              {label}
-            </a>
-          ))}
+        <div className="md:hidden border-t border-[#e8e8ec] bg-white">
+          <a
+            href="#register"
+            onClick={() => setOpen(false)}
+            className="block px-6 py-3 text-sm uppercase tracking-wider border-b border-[#f0f0f4] hover:bg-[#f7f7fa] no-underline font-semibold"
+            style={{ color: D }}
+          >
+            Регистрация
+          </a>
         </div>
       )}
     </header>
