@@ -75,12 +75,17 @@ export default function Index() {
           {events.map((ev, idx) => {
             const st = getEventStatus(ev);
             const badge = statusLabel[st];
+            const isNext = ev.id === next.id;
             return (
               <Link
                 key={ev.id}
                 to={`/event/${ev.slug}`}
-                className="group relative flex flex-col border-r border-b border-[#e8e8ec] no-underline overflow-hidden"
-                style={{ minHeight: '260px' }}
+                className="group relative flex flex-col border-r border-b no-underline overflow-hidden"
+                style={{
+                  minHeight: '260px',
+                  borderColor: isNext ? '#c9a84c' : '#e8e8ec',
+                  boxShadow: isNext ? 'inset 0 0 0 3px #c9a84c' : 'none',
+                }}
               >
                 {/* Фоновое фото с анимацией */}
                 <div
@@ -92,6 +97,14 @@ export default function Index() {
                   className="absolute inset-0 transition-opacity duration-300 group-hover:opacity-80"
                   style={{ background: 'rgba(36,41,64,0.72)' }}
                 />
+                {/* Метка ближайшего */}
+                {isNext && (
+                  <div className="absolute top-0 left-0 right-0 z-20 flex justify-center">
+                    <span className="text-[9px] font-bold tracking-[0.3em] uppercase px-4 py-1 text-[#242940]" style={{ background: '#c9a84c' }}>
+                      Ближайшее
+                    </span>
+                  </div>
+                )}
                 {/* Контент */}
                 <div className="relative z-10 flex flex-col h-full p-7">
                   <div className="flex items-center justify-between mb-6">
