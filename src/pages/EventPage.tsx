@@ -13,7 +13,6 @@ const TABS = [
   { id: 'about',        label: 'О выставке' },
   { id: 'participants', label: 'Участники и бренды' },
   { id: 'program',      label: 'Программа' },
-  { id: 'news',         label: 'Новости' },
   { id: 'media',        label: 'Фото и видео' },
   { id: 'subscribe',    label: 'Подписка' },
 ];

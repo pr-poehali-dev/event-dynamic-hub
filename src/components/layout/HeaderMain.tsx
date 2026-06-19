@@ -20,6 +20,7 @@ const navLinks = [
   { label: 'О выставке', href: '/about' },
   { label: 'Посетителям', href: '/visitors' },
   { label: 'Участникам', href: '/exhibitors' },
+  { label: 'Новости', href: '/news' },
   { label: 'Медиа', href: '/media' },
   { label: 'Премия', href: '/award' },
   { label: 'Контакты', href: '/contacts' },
