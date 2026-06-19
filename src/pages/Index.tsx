@@ -107,13 +107,7 @@ export default function Index() {
                 )}
                 {/* Контент */}
                 <div className="relative z-10 flex flex-col h-full p-7">
-                  <div className="flex items-center justify-between mb-6">
-                    <span
-                      className="text-[10px] font-semibold tracking-[0.2em] uppercase px-3 py-1"
-                      style={{ background: badge.bg, color: badge.color }}
-                    >
-                      {badge.text}
-                    </span>
+                  <div className="flex items-center justify-end mb-6">
                     <Icon
                       name="ArrowRight"
                       size={15}
@@ -130,6 +124,14 @@ export default function Index() {
                     </h3>
                     <p className="text-sm text-white/60 font-normal m-0">{ev.dates}</p>
                     <p className="text-xs text-white/40 font-light m-0 mt-1">{ev.venue}</p>
+                  </div>
+                  <div className="mt-5">
+                    <span
+                      className="text-[10px] font-semibold tracking-[0.2em] uppercase px-3 py-1"
+                      style={{ background: badge.bg, color: badge.color }}
+                    >
+                      {badge.text}
+                    </span>
                   </div>
                 </div>
               </Link>
