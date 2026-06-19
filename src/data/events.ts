@@ -224,9 +224,9 @@ export const events: Event[] = [
     season: 'Весна',
     title: 'Москва · Весна 2027',
     venue: '«Бородино Конгресс Отель»',
-    dates: '17–19 апреля 2027',
-    dateFrom: new Date('2027-04-17'),
-    dateTo: new Date('2027-04-19'),
+    dates: '10–11 апреля 2027',
+    dateFrom: new Date('2027-04-10'),
+    dateTo: new Date('2027-04-11'),
     address: 'Москва, Русаковская ул., 13',
     heroImage: 'https://cdn.poehali.dev/projects/bfa2ab91-7ee9-4bb0-8d91-527bb910c1ff/files/2f50ffac-85f1-4019-aa6e-182deca61701.jpg',
     about: {
