@@ -35,7 +35,7 @@ export default function HeaderEvent({ eventTitle }: Props) {
           <img
             src={LOGO_URL}
             alt="HiFi & High End Show"
-            className="h-12 w-auto object-contain group-hover:opacity-80 transition-opacity"
+            className="h-36 w-auto object-contain group-hover:opacity-80 transition-opacity"
           />
         </Link>
 
