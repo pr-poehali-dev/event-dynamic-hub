@@ -17,12 +17,12 @@ export default function HeaderEvent({ eventTitle }: Props) {
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-[#e8e8ec]">
 
-      <div className="max-w-[1220px] mx-auto px-6 flex items-center justify-between h-[292px]">
+      <div className="max-w-[1220px] mx-auto px-6 flex items-center justify-between h-[148px]">
         <Link to="/" className="flex items-center no-underline group">
           <img
             src={LOGO_URL}
             alt="HiFi & High End Show"
-            className="h-72 w-auto object-contain group-hover:opacity-80 transition-opacity"
+            className="h-36 w-auto object-contain group-hover:opacity-80 transition-opacity"
           />
         </Link>
 
